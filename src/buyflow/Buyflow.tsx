@@ -16,15 +16,26 @@ const PRODUCT_IDS_TO_NAMES = {
   [ProductIds.devIns]: 'Developer Insurance',
 }
 
+    
 const Buyflow: React.FC<BuyflowProps> = (props) => {
+  
+  const initialState : any = {
+            email: '',
+            age: 0
+        };
+   
   const [currentStep, setStep] = useState('email')
-  const [collectedData, updateData] = useState({
-    email: '',
-    age: 0,
-  })
+  const [collectedData, updateData] = useState(initialState)
+
   const getStepCallback = (nextStep: string) => (field: string, value: any) => {
-    updateData({ ...collectedData, [field]: value })
-    setStep(nextStep)
+  
+      if (initialState[field] !== value && field !== "email"
+       || (field === "email" && /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(value) )) {
+        
+        updateData({ ...collectedData, [field]: value })
+        setStep(nextStep)
+    }
+    
   }
   return (
     <>
