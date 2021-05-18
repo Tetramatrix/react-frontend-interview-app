@@ -8,7 +8,8 @@ interface BuyflowProps {
 }
 
 export enum ProductIds {
-  devIns = 'dev_ins',
+// eslint-disable-next-line 
+   devIns = 'dev_ins'
 }
 
 const PRODUCT_IDS_TO_NAMES = {
