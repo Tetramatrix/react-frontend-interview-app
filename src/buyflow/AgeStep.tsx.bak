@@ -12,7 +12,7 @@ const AgeStep: React.FC<AgeStepProps> = (props) => {
   function handle () {  
     if (age > 0) {
       props.cb('age', age)
-    } else {
+    } else{
       props.cb('age', -1)
       seterrorMsg( errorMsg = 'Not a valid age!')
     }

@@ -29,7 +29,7 @@ const Buyflow: React.FC<BuyflowProps> = (props) => {
     
   const getStepCallback = (nextStep: string) => (field: string, value: any) => {
   
-    if (value !== "errorMsg")  {        
+    if (value !== "errorMsg" && value != -1)  {        
         updateData({ ...collectedData, [field]: value })
         setStep(nextStep)
     } 
