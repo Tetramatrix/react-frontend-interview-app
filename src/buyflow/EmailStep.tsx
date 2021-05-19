@@ -5,7 +5,19 @@ interface EmailStepProps {
 }
 
 const EmailStep: React.FC<EmailStepProps> = (props) => {
+
   const [email, setEmail] = useState('')
+  let [errorMsg, seterrorMsg] = useState('')
+  
+  function handle () {  
+    if (/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email) ) {
+      props.cb('email', email)
+    } else{
+      props.cb('email', 'errorMsg')
+      seterrorMsg( errorMsg = 'Not a valid e-mail address!')
+    }
+  }
+  
   return (
     <>
       <div>
@@ -18,7 +30,8 @@ const EmailStep: React.FC<EmailStepProps> = (props) => {
           value={email}
         ></input>
       </div>
-      <button onClick={() => props.cb('email', email)}>Next</button>
+      <div className="fail">{errorMsg}</div>
+      <button onClick={handle}>Next</button>
     </>
   )
 }

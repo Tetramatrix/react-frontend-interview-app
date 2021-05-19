@@ -5,7 +5,19 @@ interface AgeStepProps {
 }
 
 const AgeStep: React.FC<AgeStepProps> = (props) => {
+  
   const [age, setAge] = useState(0)
+  let [errorMsg, seterrorMsg] = useState('')
+  
+  function handle () {  
+    if (age > 0) {
+      props.cb('age', age)
+    } else {
+      props.cb('age', -1)
+      seterrorMsg( errorMsg = 'Not a valid age!')
+    }
+  }
+  
   return (
     <>
       <div>
@@ -18,7 +30,8 @@ const AgeStep: React.FC<AgeStepProps> = (props) => {
           value={age}
         ></input>
       </div>
-      <button onClick={() => props.cb('age', age)}>Next</button>
+      <div className="fail">{errorMsg}</div>
+      <button onClick={handle}>Next</button>
     </>
   )
 }
