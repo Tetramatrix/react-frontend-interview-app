@@ -36,10 +36,30 @@ const Buyflow: React.FC<BuyflowProps> = (props) => {
     
        if (typeof value === 'object' && value !== null) {
           
+          
+          /*
+            updateData( collectedData => {
+                return { ...collectedData, ['FirstN']: value['FirstN']}
+            })
+            
+            updateData( collectedData => {
+                return { ...collectedData, ['LastN']: value['LastN']}
+            })
+            */
+            
+/*           updateData({ ...collectedData, ['FirstN']: value['FirstN'] })
+           updateData({...collectedData, ['LastN']: value['LastN'] })
+*/
+         
+  //        updateData({ ...collectedData, ['FirstN']: value['FirstN'], ...collectedData, ['LastN']: value['LastN'] }) 
+  //        console.log(value)          
+          
           Object.entries(value).forEach(item => {
+            console.log(item[0])
             updateData( collectedData => {
                 return { ...collectedData, [item[0]]: item[1]}
             })
+//            updateData({ ...collectedData, [item[0]]: item[1] })
           })
  
        } else {

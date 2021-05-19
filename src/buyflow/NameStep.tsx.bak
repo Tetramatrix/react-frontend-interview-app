@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 interface Name {
 	FirstN: string
-	LastN: string
+	Last: string
 }
 
 interface NameStepProps {
