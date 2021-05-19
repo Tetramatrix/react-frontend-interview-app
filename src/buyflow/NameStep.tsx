@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
-
-interface Name {
-	FirstN: string
-	LastN: string
-}
+import Name from "./interfaces";
 
 interface NameStepProps {
   cb: (field: string, value: Name) => void
