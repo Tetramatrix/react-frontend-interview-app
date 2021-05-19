@@ -20,7 +20,9 @@ const PRODUCT_IDS_TO_NAMES = {
     
 const Buyflow: React.FC<BuyflowProps> = (props) => {
   
-  const initialState : any = {
+  const initialState = {
+            FirstN: '',
+            LastN: '',
             email: '',
             age: 0
         };
@@ -32,9 +34,14 @@ const Buyflow: React.FC<BuyflowProps> = (props) => {
   
     if (value !== "errorMsg" && value !== -1)  {
     
-       if (field === "name") {
-          let name = value.split(';')
-          updateData({ ...collectedData, ['FirstN']: name[0], ...collectedData, ['LastN']: name[1]  })       
+       if (typeof value === 'object' && value !== null) {
+          
+          Object.entries(value).forEach(item => {
+            updateData( collectedData => {
+                return { ...collectedData, [item[0]]: item[1]}
+            })
+          })
+ 
        } else {
           updateData({ ...collectedData, [field]: value })          
        }      

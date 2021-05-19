@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 
+interface Name {
+	FirstN: string
+	LastN: string
+}
+
 interface NameStepProps {
-  cb: (field: string, value: string) => void
+  cb: (field: string, value: Name) => void
 }
 
 const NameStep: React.FC<NameStepProps> = (props) => {
@@ -17,7 +22,7 @@ const NameStep: React.FC<NameStepProps> = (props) => {
     
     if (re.test(FirstN) && re.test(LastN) ) {
         
-      props.cb('name', FirstN+';'+LastN)
+      props.cb('name', { FirstN, LastN } )
       
     } else if (!re.test(FirstN)) {
       seterrorMsgFN( errorMsgFN = 'Not a valid first name!')
@@ -51,9 +56,7 @@ const NameStep: React.FC<NameStepProps> = (props) => {
           value={LastN}
         ></input>
       </div>
-      <div className="fail">{errorMsgLN}</div>     
-      
-      
+      <div className="fail">{errorMsgLN}</div> 
       <button onClick={handle}>Next</button>
     </>
   )
