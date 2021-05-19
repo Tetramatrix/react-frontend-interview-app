@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import FirstNStep from './FirstNStep'
-import LastNStep from './LastNStep'
+import NameStep from './NameStep'
 import AgeStep from './AgeStep'
 import EmailStep from './EmailStep'
 import SummaryStep from './SummaryStep'
@@ -26,22 +25,27 @@ const Buyflow: React.FC<BuyflowProps> = (props) => {
             age: 0
         };
    
-  const [currentStep, setStep] = useState('FirstN')
+  const [currentStep, setStep] = useState('name')
   const [collectedData, updateData] = useState(initialState)
     
   const getStepCallback = (nextStep: string) => (field: string, value: any) => {
   
-    if (value !== "errorMsg" && value !== -1)  {        
-        updateData({ ...collectedData, [field]: value })
-        setStep(nextStep)
+    if (value !== "errorMsg" && value !== -1)  {
+    
+       if (field === "name") {
+          let name = value.split(';')
+          updateData({ ...collectedData, ['FirstN']: name[0], ...collectedData, ['LastN']: name[1]  })       
+       } else {
+          updateData({ ...collectedData, [field]: value })          
+       }      
+       setStep(nextStep)
     } 
     
   }
   return (
     <>
       <h4>Buying {PRODUCT_IDS_TO_NAMES[props.productId]}</h4>
-      {(currentStep === 'FirstN' && <FirstNStep cb={getStepCallback('LastN')} />) ||
-       (currentStep === 'LastN' && <LastNStep cb={getStepCallback('email')} />) ||
+      {(currentStep === 'name' && <NameStep cb={getStepCallback('email')} />) ||
        (currentStep === 'email' && <EmailStep cb={getStepCallback('age')} />) ||
         (currentStep === 'age' && (
           <AgeStep cb={getStepCallback('summary')} />
