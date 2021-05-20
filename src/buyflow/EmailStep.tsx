@@ -13,7 +13,6 @@ const EmailStep: React.FC<EmailStepProps> = (props) => {
     if (/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email) ) {
       props.cb('email', email)
     } else{
-      props.cb('email', 'errorMsg')
       seterrorMsg( errorMsg = 'Not a valid e-mail address!')
     }
   }

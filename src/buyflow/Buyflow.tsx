@@ -31,23 +31,20 @@ const Buyflow: React.FC<BuyflowProps> = (props) => {
   const [collectedData, updateData] = useState(initialState)
     
   const getStepCallback = (nextStep: string) => (field: string, value: any) => {
-  
-    if (value !== "errorMsg" && value !== -1)  {
-    
-       if (typeof value === 'object' && value !== null) {
-          
-          Object.entries(value).forEach(item => {
-            updateData( collectedData => {
-                return { ...collectedData, [item[0]]: item[1]}
-            })
+   
+     if (typeof value === 'object' && value !== null) {
+        
+        Object.entries(value).forEach(item => {
+          updateData( collectedData => {
+              return { ...collectedData, [item[0]]: item[1]}
           })
- 
-       } else {
-          updateData({ ...collectedData, [field]: value })          
-       }      
-       setStep(nextStep)
-    } 
-    
+        })
+
+     } else {
+        updateData({ ...collectedData, [field]: value })          
+     }      
+     setStep(nextStep)
+     
   }
   return (
     <>
