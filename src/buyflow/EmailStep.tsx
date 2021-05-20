@@ -10,7 +10,7 @@ const EmailStep: React.FC<EmailStepProps> = (props) => {
   let [errorMsg, seterrorMsg] = useState('')
   
   function handle () {  
-    if (/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email) ) {
+    if (/^[a-zA-Z0-9.]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email) ) {
       props.cb('email', email)
     } else{
       seterrorMsg( errorMsg = 'Not a valid e-mail address!')
