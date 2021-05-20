@@ -22,9 +22,14 @@ const NameStep: React.FC<NameStepProps> = (props) => {
       
     } else if (!re.test(FirstN)) {
       seterrorMsgFN( errorMsgFN = 'Not a valid first name!')
-    } 
+    }  else {
+      seterrorMsgFN( errorMsgFN = '')
+    }
+    
     if (!re.test(LastN)) {
       seterrorMsgLN( errorMsgLN = 'Not a valid last name!')
+    } else {
+      seterrorMsgLN( errorMsgLN = '')
     }
     
   }
