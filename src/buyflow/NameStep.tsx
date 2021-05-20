@@ -14,7 +14,7 @@ const NameStep: React.FC<NameStepProps> = (props) => {
   
   function handle () {  
     
-    var re = /^[a-zA-Z0-9'-]+$/
+    var re = /^[\u00C0-\u00ffa-zA-Z0-9.'-]+$/
     
     if (re.test(FirstN) && re.test(LastN) ) {
         
